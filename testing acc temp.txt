@@ -1,0 +1,4 @@
+
+  "fullname":"Vish",
+  "email":"vish@vish.com",
+  "password": "vish"
