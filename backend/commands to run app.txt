@@ -1,0 +1,6 @@
+start backend using 
+npm start
+
+start frontend using 
+cd frontend
+>> python -m http.server 5500

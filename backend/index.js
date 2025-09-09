@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 
 //apis
 
-app.use("api/v1/user", userRoute);
+app.use("/api/v1/user", userRoute);
 
 
 app.listen(PORT,()=>{

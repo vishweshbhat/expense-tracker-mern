@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     email:{
-        value:String,
+        type:String,
         required:true
     },
     password:{
@@ -15,5 +15,5 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-export const User = mongoose.model("User", userSchema);
+export const user = mongoose.model("User", userSchema);
 
