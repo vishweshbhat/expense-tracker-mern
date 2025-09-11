@@ -2,14 +2,15 @@ import { Expense } from "../models/expense.model.js";
 
 export const addExpense = async (req , res) => {
     try {
-        const {description, amount, category} = req.body;
-        const userId = req.id; //this is of the current logged in user
-        if(!fullname || !email || !password){
+        const { description, amount, category } = req.body;
+        const userId = req.id; // this is the current logged in user
+
+        if(!description || !amount || !category){
             return res.status(400).json({
-                message:"All fields are required. ",
+                message:"All fields are required.",
                 success:false
-            })
-        };  
+            });
+    }
 
         const expense = await Expense.create({
             description,
@@ -30,34 +31,34 @@ export const addExpense = async (req , res) => {
 export const getAllExpense = async (req,res) => {
     try {
         const userId = req.id;
-        let category = reg.query.category || "";
+        let category = req.query.category || "";
         const done = req.query.category || "";
 
         const query = {
             userId
         }
-        if(category.toLowercase()=== "all"){
+        if(category.toLowerCase()=== "all"){
             //no need to filter by category
         }else{
             query.category = {$regex:category, $options:"i"};
         }
-        if (done.toLowercase() === "done"){
+        if (done.toLowerCase() === "done"){
             query.done = true; 
-        }else if (done.toLowercase() === "undone"){
+        }else if (done.toLowerCase() === "undone"){
             query.done = false; 
         }
-        const expense = await expense.find(query);
-
-        if(!expense || expense.length ===0){
+        const expenses = await Expense.find(query);
+        if(!expenses || expenses.length === 0){
             return res.status(404).json({
-                message:"No Expense found. ",
+                message:"No Expense found.",
                 success:false
-            })
-        };
+            });
+        }
         return res.status(200).json({
-            expense,
+            expenses,
             success:true
-        })
+        });
+
 
     } catch (error) {
         console.log(error);
