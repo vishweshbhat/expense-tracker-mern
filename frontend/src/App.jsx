@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import "tailwindcss";
 import './App.css';
-import { Button } from './components/ui/button';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './components/ui/Home';
 import Login from './components/ui/Login';
 import Signup from './components/ui/Signup';
+import { Toaster } from "@/components/ui/sonner"
 
 const appRouter = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -14,10 +15,10 @@ const appRouter = createBrowserRouter([
 
 function App() {
   return (
-    <div>
-      <Button>Hello</Button>
+    <>
       <RouterProvider router={appRouter} />
-    </div>
+      <Toaster />
+    </>
   );
 }
 
