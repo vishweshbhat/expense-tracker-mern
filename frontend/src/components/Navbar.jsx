@@ -31,12 +31,13 @@ const Navbar = () => {
         {user ? (
           <Popover>
             <PopoverTrigger>
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>User</AvatarFallback>
-              </Avatar>
+              <Avatar className="w-12 h-12">
+  <AvatarImage src="https://github.com/shadcn.png" />
+  <AvatarFallback>User</AvatarFallback>
+</Avatar>
+
             </PopoverTrigger>
-            <PopoverContent align="end" className="w-32 p-2">
+            <PopoverContent align="end" className="w-32 p-0.5">
               <Button
                 className="bg-gray-900 hover:bg-gray-800 text-white w-full text-sm font-medium"
                 onClick={logoutHandler}
