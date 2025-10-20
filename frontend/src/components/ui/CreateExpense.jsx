@@ -24,6 +24,8 @@ import { Input } from './input.jsx';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import axios from 'axios';
+import { setExpenses } from '../../redux/expenseSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CreateExpense = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +36,8 @@ const CreateExpense = () => {
 
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const {expenses} = useSelector(Store => Store.expense);
 
   const changeEventHandler = (e) => {
     const { name, value } = e.target;
@@ -53,6 +57,7 @@ const CreateExpense = () => {
         withCredentials: true
       });
       if (res.data.success) {
+        dispatch(setExpenses([...expenses, res.data.expense]));
         toast.success(res.data.message);
         setIsOpen(false);
       }
@@ -124,12 +129,7 @@ return (
     >
       Shopping
     </SelectItem>
-    <SelectItem
-      value="salary"
-      className="hover:bg-gray-100 rounded-md px-2 py-1"
-    >
-      Salary
-    </SelectItem>
+
     <SelectItem
       value="travel"
       className="hover:bg-gray-100 rounded-md px-2 py-1"

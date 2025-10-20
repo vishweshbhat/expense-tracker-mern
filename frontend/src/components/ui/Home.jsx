@@ -4,8 +4,11 @@ import CreateExpense from './CreateExpense';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './select';
 import { setCategory, setMarkAsDone } from '../../redux/expenseSlice';
 import {useDispatch} from 'react-redux'
+import ExpenseTable from '../ExpenseTable';
+import useGetExpenses from '../../hooks/useGetExpenses';
 
 const Home = () => {
+  useGetExpenses();
   const dispatch = useDispatch();
   function changeCategoryHandler(value) {
     dispatch(setCategory(value));
@@ -100,6 +103,7 @@ const Home = () => {
       </div>
       {/* You can put filter controls here */}
     </h1>
+    <ExpenseTable />
   </div>
 </div>
 
