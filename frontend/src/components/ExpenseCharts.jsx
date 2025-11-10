@@ -1,7 +1,6 @@
 // src/components/ExpenseCharts.jsx
 import React from "react";
 import {
-<<<<<<< HEAD
   PieChart,
   Pie,
   Cell,
@@ -13,15 +12,10 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-=======
-  PieChart, Pie, Cell,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
->>>>>>> b5510819165b519955c03a7789a1f329900d0c45
 } from "recharts";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A020F0", "#FF5C93"];
 
-<<<<<<< HEAD
 /**
  * Try to extract a YYYY-MM-DD string from several possible inputs:
  * - "YYYY-MM-DD"
@@ -64,14 +58,10 @@ const formatDateFromTsUTC = (ts) => {
 };
 
 const ExpenseCharts = ({ expenses = [] }) => {
-=======
-const ExpenseCharts = ({ expenses }) => {
->>>>>>> b5510819165b519955c03a7789a1f329900d0c45
   if (!expenses || expenses.length === 0) {
     return <p style={{ textAlign: "center", marginTop: "2rem" }}>No data to show graphs yet.</p>;
   }
 
-<<<<<<< HEAD
   // --- Category aggregation ---
   const categoryData = expenses.reduce((acc, curr) => {
     const amount = Number(curr.amount) || 0;
@@ -107,29 +97,11 @@ const ExpenseCharts = ({ expenses }) => {
 
   // Debugging: if chart appears empty, temporarily uncomment:
   // console.log("Prepared dateData:", dateData, "categoryData:", categoryData);
-=======
-  // Aggregate by category
-  const categoryData = expenses.reduce((acc, curr) => {
-    const found = acc.find((a) => a.category === curr.category);
-    if (found) found.amount += curr.amount;
-    else acc.push({ category: curr.category, amount: curr.amount });
-    return acc;
-  }, []);
-
-  // Aggregate by date
-  const dateData = expenses.reduce((acc, curr) => {
-    const found = acc.find((a) => a.date === curr.date);
-    if (found) found.amount += curr.amount;
-    else acc.push({ date: curr.date, amount: curr.amount });
-    return acc;
-  }, []);
->>>>>>> b5510819165b519955c03a7789a1f329900d0c45
 
   return (
     <div style={{ marginTop: "3rem" }}>
       <h2 style={{ textAlign: "center" }}>Expense Analytics</h2>
 
-<<<<<<< HEAD
       <div
         style={{
           display: "flex",
@@ -140,16 +112,6 @@ const ExpenseCharts = ({ expenses }) => {
         }}
       >
         {/* Pie Chart: Category distribution */}
-=======
-      <div style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-evenly",
-        gap: "2rem",
-        marginTop: "2rem"
-      }}>
-        {/* Pie Chart */}
->>>>>>> b5510819165b519955c03a7789a1f329900d0c45
         <div style={{ width: "400px", height: "300px" }}>
           <h3 style={{ textAlign: "center" }}>Category-wise Distribution</h3>
           <ResponsiveContainer width="100%" height="100%">
@@ -161,27 +123,18 @@ const ExpenseCharts = ({ expenses }) => {
                 cx="50%"
                 cy="50%"
                 outerRadius={100}
-<<<<<<< HEAD
-=======
-                fill="#8884d8"
->>>>>>> b5510819165b519955c03a7789a1f329900d0c45
                 label
               >
                 {categoryData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-<<<<<<< HEAD
               <Tooltip formatter={(value) => [value, "Amount"]} />
-=======
-              <Tooltip />
->>>>>>> b5510819165b519955c03a7789a1f329900d0c45
               <Legend />
             </PieChart>
           </ResponsiveContainer>
         </div>
 
-<<<<<<< HEAD
         {/* Line Chart: Expenses over time */}
         <div style={{ width: "500px", height: "300px" }}>
           <h3 style={{ textAlign: "center" }}>Expenses Over Time</h3>
@@ -212,20 +165,6 @@ const ExpenseCharts = ({ expenses }) => {
                 isAnimationActive={true}
               />
             </LineChart>
-=======
-        {/* Bar Chart */}
-        <div style={{ width: "500px", height: "300px" }}>
-          <h3 style={{ textAlign: "center" }}>Expenses Over Time</h3>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={dateData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="amount" fill="#82ca9d" />
-            </BarChart>
->>>>>>> b5510819165b519955c03a7789a1f329900d0c45
           </ResponsiveContainer>
         </div>
       </div>
